@@ -1,0 +1,1035 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.pi4j</groupId>
+	<artifactId>pi4j-parent</artifactId>
+    <version>1.3-SNAPSHOT</version>
+	<name>Pi4J :: Parent POM</name>
+	<description>Parent Maven POM for the Pi4J Project</description>
+	<url>https://www.pi4j.com</url>
+	<inceptionYear>2012</inceptionYear>
+	<packaging>pom</packaging>
+
+	<!-- ORGANIZATION -->
+	<organization>
+		<name>Pi4J</name>
+		<url>https://www.pi4j.com</url>
+	</organization>
+
+	<!-- LICENSE -->
+	<licenses>
+		<license>
+			<name>GNU General Lesser Public License (LGPL) version 3.0</name>
+			<url>http://www.gnu.org/licenses/lgpl.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<!-- DEVELOPERS/CONTRIBUTORS -->
+	<developers>
+		<developer>
+			<name>Robert Savage</name>
+			<email>robert@pi4j.com</email>
+			<url>http://robertsavage.me</url>
+			<organizationUrl>http://www.savagehomeautomation.com</organizationUrl>
+			<roles>
+				<role>sponsor</role>
+				<role>architect</role>
+				<role>developer</role>
+			</roles>
+		</developer>
+        <developer>
+            <name>Daniel Sendula</name>
+            <email>daniel@pi4j.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+	</developers>
+
+	<!-- SOURCE CONTROL -->
+	<scm>
+		<developerConnection>scm:git:ssh://git@github.com/Pi4J/pi4j.git</developerConnection>
+		<connection>scm:git:ssh://git@github.com/Pi4J/pi4j.git</connection>
+		<url>https://github.com/Pi4J/pi4j.git</url>
+	</scm>
+
+	<!-- ISSUE MANAGEMENT -->
+	<issueManagement>
+		<url>https://github.com/Pi4J/pi4j/issues</url>
+		<system>github</system>
+	</issueManagement>
+
+	<!-- DISTRIBUTION REPOSITORIES -->
+	<distributionManagement>
+		<downloadUrl>https://www.pi4j.com/download.html</downloadUrl>
+		<repository>
+			<id>sonatype-oss-staging</id>
+			<name>Sonatype Open Source Maven Repository</name>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+		</repository>
+		<snapshotRepository>
+			<id>sonatype-oss-snapshots</id>
+			<name>Sonatype Open Source Maven Snapshots Repository</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+    <!-- DEPENDENCY REPOSITORIES -->
+    <repositories>
+        <repository>
+            <id>oss-snapshots-repo</id>
+            <name>Sonatype OSS Maven Repository</name>
+            <url>https://oss.sonatype.org/content/groups/public</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+	<!-- PROJECT MODULES -->
+	<modules>
+		<module>pi4j-core</module>
+		<module>pi4j-example</module>
+		<module>pi4j-gpio-extension</module>
+		<module>pi4j-device</module>
+		<module>pi4j-distribution</module>
+	</modules>
+
+    <!-- PROJECT PREREQUISITES -->
+	<prerequisites>
+		<maven>3.0.5</maven>
+	</prerequisites>
+
+	<!-- BUILD PROPERTIES -->
+	<properties>
+
+        <!-- DEFAULT SETTINGS FOR REMOTELY BUILDING NATIVE LIBRARY ON A REMOTE PLATFORM -->
+        <pi4j.default.host>192.168.1.100</pi4j.default.host>
+        <pi4j.default.port>22</pi4j.default.port>
+        <pi4j.default.user>pi</pi4j.default.user>
+        <pi4j.default.password>raspberry</pi4j.default.password>
+        <pi4j.default.directory>pi4j-temp</pi4j.default.directory>
+
+        <!-- SETTINGS FOR COPYING Pi4J ARTIFACTS TO DEVELOPMENT DEVICE/PLATFORM -->
+        <pi4j.dev.transfer>false</pi4j.dev.transfer>
+        <pi4j.dev.host>${pi4j.default.host}</pi4j.dev.host>
+        <pi4j.dev.port>${pi4j.default.port}</pi4j.dev.port>
+        <pi4j.dev.user>${pi4j.default.user}</pi4j.dev.user>
+        <pi4j.dev.password>${pi4j.default.password}</pi4j.dev.password>
+        <pi4j.dev.directory>pi4j-dev</pi4j.dev.directory>
+
+        <!-- DEFAULT Pi4J BUILD PROPERTIES FOR THE 'RaspberryPi' PLATFORM -->
+        <raspberrypi.build>false</raspberrypi.build>
+        <raspberrypi.platform>raspberrypi</raspberrypi.platform>
+        <raspberrypi.name>RaspberryPi</raspberrypi.name>
+        <raspberrypi.host>${pi4j.default.host}</raspberrypi.host>
+        <raspberrypi.port>${pi4j.default.port}</raspberrypi.port>
+        <raspberrypi.user>${pi4j.default.user}</raspberrypi.user>
+        <raspberrypi.password>${pi4j.default.password}</raspberrypi.password>
+        <raspberrypi.directory>${pi4j.default.directory}</raspberrypi.directory>
+
+        <!-- DEFAULT Pi4J BUILD PROPERTIES FOR THE 'Odroid' PLATFORM -->
+        <odroid.build>false</odroid.build>
+        <odroid.platform>odroid</odroid.platform>
+        <odroid.name>Odroid</odroid.name>
+        <odroid.host>${pi4j.default.host}</odroid.host>
+        <odroid.port>${pi4j.default.port}</odroid.port>
+        <odroid.user>${pi4j.default.user}</odroid.user>
+        <odroid.password>${pi4j.default.password}</odroid.password>
+        <odroid.directory>${pi4j.default.directory}</odroid.directory>
+
+        <!-- DEFAULT Pi4J BUILD PROPERTIES FOR THE 'BananaPi' PLATFORM -->
+        <bananapi.build>false</bananapi.build>
+        <bananapi.platform>bananapi</bananapi.platform>
+        <bananapi.name>LeMaker BananaPi</bananapi.name>
+        <bananapi.host>${pi4j.default.host}</bananapi.host>
+        <bananapi.port>${pi4j.default.port}</bananapi.port>
+        <bananapi.user>${pi4j.default.user}</bananapi.user>
+        <bananapi.password>${pi4j.default.password}</bananapi.password>
+        <bananapi.directory>${pi4j.default.directory}</bananapi.directory>
+
+        <!-- DEFAULT Pi4J BUILD PROPERTIES FOR THE 'BananaPro' PLATFORM -->
+        <bananapro.build>false</bananapro.build>
+        <bananapro.platform>bananapro</bananapro.platform>
+        <bananapro.name>LeMaker BananaPro</bananapro.name>
+        <bananapro.host>${pi4j.default.host}</bananapro.host>
+        <bananapro.port>${pi4j.default.port}</bananapro.port>
+        <bananapro.user>${pi4j.default.user}</bananapro.user>
+        <bananapro.password>${pi4j.default.password}</bananapro.password>
+        <bananapro.directory>${pi4j.default.directory}</bananapro.directory>
+
+        <!-- DEFAULT Pi4J BUILD PROPERTIES FOR THE 'SINOVOIP-BPI' PLATFORM -->
+        <bpi.build>false</bpi.build>
+        <bpi.platform>bpi</bpi.platform>
+        <bpi.name>Sinovoip BananaPi</bpi.name>
+        <bpi.host>${pi4j.default.host}</bpi.host>
+        <bpi.port>${pi4j.default.port}</bpi.port>
+        <bpi.user>${pi4j.default.user}</bpi.user>
+        <bpi.password>${pi4j.default.password}</bpi.password>
+        <bpi.directory>${pi4j.default.directory}</bpi.directory>
+
+        <!-- DEFAULT Pi4J BUILD PROPERTIES FOR THE 'OrangePi' PLATFORM -->
+        <orangepi.build>false</orangepi.build>
+        <orangepi.platform>orangepi</orangepi.platform>
+        <orangepi.name>OrangePi</orangepi.name>
+        <orangepi.host>${pi4j.default.host}</orangepi.host>
+        <orangepi.port>${pi4j.default.port}</orangepi.port>
+        <orangepi.user>${pi4j.default.user}</orangepi.user>
+        <orangepi.password>${pi4j.default.password}</orangepi.password>
+        <orangepi.directory>${pi4j.default.directory}</orangepi.directory>
+
+        <!-- DEFAULT Pi4J BUILD PROPERTIES FOR THE 'NanoPi' PLATFORM -->
+        <nanopi.build>false</nanopi.build>
+        <nanopi.platform>nanopi</nanopi.platform>
+        <nanopi.name>NanoPi</nanopi.name>
+        <nanopi.host>${pi4j.default.host}</nanopi.host>
+        <nanopi.port>${pi4j.default.port}</nanopi.port>
+        <nanopi.user>${pi4j.default.user}</nanopi.user>
+        <nanopi.password>${pi4j.default.password}</nanopi.password>
+        <nanopi.directory>${pi4j.default.directory}</nanopi.directory>
+
+        <!-- PROJECT ENCODING PROPERTIES -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- GITHUB PROPERTIES -->
+        <github.global.server>github</github.global.server>
+
+        <!-- JAVA COMPILER VERSIONS -->
+        <jdk.source.version>1.8</jdk.source.version>
+        <jdk.target.version>1.8</jdk.target.version>
+
+        <!-- DEPENDENCY VERSIONS -->
+        <org.osgi.core.version>6.0.0</org.osgi.core.version>
+        <ant-jsch.version>1.9.7</ant-jsch.version>
+        <jsch.version>0.1.53</jsch.version>
+        <ant-contrib.version>20020829</ant-contrib.version>
+        <junit.version>4.12</junit.version>
+        <mockito.version>1.10.19</mockito.version>
+        <powermock.version>1.6.5</powermock.version>
+
+        <!-- PLUGIN VERSIONS -->
+        <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
+        <maven-dependency-plugin.version>3.0.0</maven-dependency-plugin.version>
+        <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
+        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
+        <maven-site-plugin.version>3.7</maven-site-plugin.version>
+        <maven-assembly-plugin.version>3.0.0</maven-assembly-plugin.version>
+        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+        <maven-scm-plugin.version>1.9.5</maven-scm-plugin.version>
+        <maven-bundle-plugin.version>3.2.0</maven-bundle-plugin.version>
+        <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
+        <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+        <native-maven-plugin.version>1.0-alpha-8</native-maven-plugin.version>
+        <license-maven-plugin.version>1.14</license-maven-plugin.version>
+        <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
+        <site-maven-plugin.version>0.12</site-maven-plugin.version>
+        <jdeb.version>1.5</jdeb.version>
+        <exec-maven-plugin.version>1.5.0</exec-maven-plugin.version>
+        <s3-upload-maven-plugin.version>1.4</s3-upload-maven-plugin.version>
+        <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
+
+        <!-- REPORTS VERSIONS -->
+        <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
+
+        <!-- SPECIAL ACCESS PROPERTIES -->
+        <!-- These are only used by project comitters/publishers -->
+        <pi4j.aws.access.key></pi4j.aws.access.key>
+        <pi4j.aws.secret.key></pi4j.aws.secret.key>
+        <pi4j.gpg.sign>false</pi4j.gpg.sign>
+        <pi4j.gpg.key></pi4j.gpg.key>
+        <pi4j.gpg.keyring></pi4j.gpg.keyring>
+        <pi4j.gpg.passphrase></pi4j.gpg.passphrase>
+
+	</properties>
+
+    <!-- PROJECT DEPENDENCIES -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>org.osgi.core</artifactId>
+                <version>${org.osgi.core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.ant</groupId>
+                <artifactId>ant-jsch</artifactId>
+                <version>${ant-jsch.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jcraft</groupId>
+                <artifactId>jsch</artifactId>
+                <version>${jsch.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ant-contrib</groupId>
+                <artifactId>ant-contrib</artifactId>
+                <version>${ant-contrib.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+			<dependency>
+				<groupId>org.powermock</groupId>
+				<artifactId>powermock-module-junit4</artifactId>
+            	<version>${powermock.version}</version>
+            	<scope>test</scope>
+			</dependency>
+            <dependency>
+            	<groupId>org.powermock</groupId>
+            	<artifactId>powermock-api-mockito</artifactId>
+            	<version>${powermock.version}</version>
+            	<scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- GLOBAL DEPENDENCIES -->
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+    </dependencies>
+
+	<!-- BUILD PROFILES -->
+	<profiles>
+		<!-- SPECIAL PROFILE TO INCLUDE JNI NATIVE LIBRARY FOR ALL PLATFORMS -->
+		<profile>
+			<id>all-platforms</id>
+			<activation>
+				<property>
+					<name>release-build</name>
+				</property>
+			</activation>
+			<modules>
+				<module>pi4j-native</module>
+			</modules>
+            <properties>
+                <raspberrypi.build>true</raspberrypi.build>
+                <bananapi.build>true</bananapi.build>
+                <bananapro.build>true</bananapro.build>
+                <odroid.build>true</odroid.build>
+                <orangepi.build>true</orangepi.build>
+                <bpi.build>true</bpi.build>
+                <nanopi.build>true</nanopi.build>
+            </properties>
+		</profile>
+
+		<!-- SPECIAL PROFILE FOR RELEASE DEPLOYMENT BUILDS -->
+		<profile>
+			<id>release</id>
+			<activation>
+				<property>
+					<name>release-build</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+								<configuration>
+                                    <!-- NOTE:
+                                        The "{pi4j.gpg.key}" property must be configured in your maven settings.xml file.
+                                        The "{pi4j.gpg.passphrase}" property must be configured in your maven settings.xml file.
+                                        (This is intended only for Pi4J public deployment)
+                                    -->
+									<keyname>${pi4j.gpg.key}</keyname>
+                                    <passphrase>${pi4j.gpg.passphrase}</passphrase>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+			<repositories>
+				<repository>
+					<id>sonatype-oss-staging</id>
+					<name>Sonatype Open Source Maven Repository</name>
+					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+		</profile>
+
+        <!-- SPECIAL PROFILE FOR JAVA 8-->
+        <profile>
+            <id>doclint-java8-disable</id>
+            <activation>
+                <jdk>[1.8,)</jdk>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <configuration>
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+            <reporting>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <configuration>
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </reporting>
+        </profile>
+
+        <profile>
+            <id>deploy-site</id>
+            <build>
+                <plugins>
+                    <!-- DEPLOY GITHUB SITE DOCUMENTATION -->
+                    <plugin>
+                        <groupId>com.github.github</groupId>
+                        <artifactId>site-maven-plugin</artifactId>
+                        <inherited>false</inherited>
+                        <configuration>
+                            <message>Generating site content for ${project.version}</message>
+                            <repositoryOwner>Pi4J</repositoryOwner>
+                            <repositoryName>pi4j</repositoryName>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>site</goal>
+                                </goals>
+                                <phase>site</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- SPECIAL PROFILE TO INCLUDE RASPBERRY PI PLATFORM -->
+        <profile>
+            <id>raspberrypi</id>
+            <activation>
+                <property>
+                    <name>release-build</name>
+                </property>
+            </activation>
+            <properties>
+                <raspberrypi.build>true</raspberrypi.build>
+            </properties>
+            <modules>
+                <module>pi4j-native</module>
+            </modules>
+        </profile>
+
+        <!-- SPECIAL PROFILE TO INCLUDE ODROID PLATFORM -->
+        <profile>
+            <id>odroid</id>
+            <activation>
+                <property>
+                    <name>release-build</name>
+                </property>
+            </activation>
+            <properties>
+                <odroid.build>true</odroid.build>
+            </properties>
+            <modules>
+                <module>pi4j-native</module>
+            </modules>
+        </profile>
+
+        <!-- SPECIAL PROFILE TO INCLUDE BANANAPI PLATFORM -->
+        <profile>
+            <id>bananapi</id>
+            <activation>
+                <property>
+                    <name>release-build</name>
+                </property>
+            </activation>
+            <properties>
+                <bananapi.build>true</bananapi.build>
+            </properties>
+            <modules>
+                <module>pi4j-native</module>
+            </modules>
+        </profile>
+
+        <!-- SPECIAL PROFILE TO INCLUDE BANANAPRO PLATFORM -->
+        <profile>
+            <id>bananapro</id>
+            <activation>
+                <property>
+                    <name>release-build</name>
+                </property>
+            </activation>
+            <properties>
+                <bananapro.build>true</bananapro.build>
+            </properties>
+            <modules>
+                <module>pi4j-native</module>
+            </modules>
+        </profile>
+
+        <!-- SPECIAL PROFILE TO INCLUDE SINOVOIP-BPI PLATFORM -->
+        <profile>
+            <id>bpi</id>
+            <activation>
+                <property>
+                    <name>release-build</name>
+                </property>
+            </activation>
+            <properties>
+                <bpi.build>true</bpi.build>
+            </properties>
+            <modules>
+                <module>pi4j-native</module>
+            </modules>
+        </profile>
+
+        <!-- SPECIAL PROFILE TO INCLUDE ORANGEPI PLATFORM -->
+        <profile>
+            <id>orangepi</id>
+            <activation>
+                <property>
+                    <name>release-build</name>
+                </property>
+            </activation>
+            <properties>
+                <orangepi.build>true</orangepi.build>
+            </properties>
+            <modules>
+                <module>pi4j-native</module>
+            </modules>
+        </profile>
+
+        <!-- SPECIAL PROFILE TO INCLUDE NANOPI PLATFORM -->
+        <profile>
+            <id>nanopi</id>
+            <activation>
+                <property>
+                    <name>release-build</name>
+                </property>
+            </activation>
+            <properties>
+                <nanopi.build>true</nanopi.build>
+            </properties>
+            <modules>
+                <module>pi4j-native</module>
+            </modules>
+        </profile>
+
+    </profiles>
+
+	<!-- BUILD INSTRUCTIONS -->
+	<build>
+
+        <!-- GLOBAL PROJECT RESOURCES -->
+		<resources>
+			<resource>
+				<directory>${basedir}</directory>
+				<filtering>false</filtering>
+				<includes>
+					<include>LICENSE.txt</include>
+					<include>NOTICE.txt</include>
+					<include>README.md</include>
+				</includes>
+			</resource>
+		</resources>
+
+        <!-- PLUGIN MANAGEMENT -->
+        <pluginManagement>
+            <plugins>
+
+                <!-- JAVA COMPILER -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>${jdk.source.version}</source>
+                        <target>${jdk.target.version}</target>
+                        <showDeprecation>true</showDeprecation>
+                        <showWarnings>true</showWarnings>
+                        <verbose>false</verbose>
+                    </configuration>
+                </plugin>
+
+                <!-- MAVEN JAR PLUGIN -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven-jar-plugin.version}</version>
+                </plugin>
+
+
+                <!-- INCLUDE SOURCE JAR -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <!-- INCLUDE JAVADOC JAR -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>attach-javadocs</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <!-- DOWNLOAD LICENSE, README & NOTICE ARTIFACTS -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${maven-dependency-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>copy-license</id>
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>copy</goal>
+                            </goals>
+                            <configuration>
+                                <artifactItems>
+                                    <artifactItem>
+                                        <groupId>com.pi4j</groupId>
+                                        <artifactId>pi4j-parent</artifactId>
+                                        <version>${project.version}</version>
+                                        <classifier>license</classifier>
+                                        <type>txt</type>
+                                        <overWrite>true</overWrite>
+                                        <outputDirectory>${project.build.directory}</outputDirectory>
+                                        <destFileName>LICENSE.txt</destFileName>
+                                    </artifactItem>
+                                    <artifactItem>
+                                        <groupId>com.pi4j</groupId>
+                                        <artifactId>pi4j-parent</artifactId>
+                                        <version>${project.version}</version>
+                                        <classifier>notice</classifier>
+                                        <type>txt</type>
+                                        <overWrite>true</overWrite>
+                                        <outputDirectory>${project.build.directory}</outputDirectory>
+                                        <destFileName>NOTICE.txt</destFileName>
+                                    </artifactItem>
+                                    <artifactItem>
+                                        <groupId>com.pi4j</groupId>
+                                        <artifactId>pi4j-parent</artifactId>
+                                        <version>${project.version}</version>
+                                        <classifier>readme</classifier>
+                                        <type>md</type>
+                                        <overWrite>true</overWrite>
+                                        <outputDirectory>${project.build.directory}</outputDirectory>
+                                        <destFileName>README.md</destFileName>
+                                    </artifactItem>
+                                </artifactItems>
+                                <outputDirectory>${project.build.directory}</outputDirectory>
+                                <overWriteReleases>false</overWriteReleases>
+                                <overWriteSnapshots>true</overWriteSnapshots>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <!-- GPG PLUGIN (used to sign JARs) -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>${maven-gpg-plugin.version}</version>
+                </plugin>
+
+                <!-- SCM PLUGIN (used to access github) -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-scm-plugin</artifactId>
+                    <version>${maven-scm-plugin.version}</version>
+                </plugin>
+
+                <!-- OSGi BUNDLE -->
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>${maven-bundle-plugin.version}</version>
+                    <extensions>true</extensions>
+                </plugin>
+
+                <!-- GENERATE LICENSE HEADERS IN SOURCE FILES -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>license-maven-plugin</artifactId>
+                    <version>${license-maven-plugin.version}</version>
+                    <configuration>
+                        <verbose>false</verbose>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>append-license-file-headers</id>
+                            <goals>
+                                <goal>update-file-header</goal>
+                            </goals>
+                            <phase>process-sources</phase>
+                            <configuration>
+                                <licenseName>lgpl_v3</licenseName>
+                                <descriptionTemplate>${basedir}/../src/license/template.ftl</descriptionTemplate>
+                                <canUpdateCopyright>true</canUpdateCopyright>
+                                <canUpdateDescription>true</canUpdateDescription>
+                                <canUpdateLicense>true</canUpdateLicense>
+                                <excludes>
+                                    <exclude>*.sh</exclude> <!-- exclude shell scripts -->
+                                </excludes>
+                                <roots>
+                                    <root>src/main/native</root>
+                                    <root>src/main/java</root>
+                                    <root>src/test</root>
+                                </roots>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <!-- USED TO GENERATE HEADER FILES FOR NATIVE LIBS -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>native-maven-plugin</artifactId>
+                    <version>${native-maven-plugin.version}</version>
+                </plugin>
+
+                <!-- GENERATE SITE DOCUMENTATION -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${maven-site-plugin.version}</version>
+                </plugin>
+
+                <!-- MAVEN ASSEMBLY PLUGIN -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${maven-assembly-plugin.version}</version>
+                </plugin>
+
+                <!-- MAVEN ASSEMBLY PLUGIN -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>${maven-antrun-plugin.version}</version>
+                </plugin>
+
+                <!-- EXEC MAVEN PLUGIN -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>${exec-maven-plugin.version}</version>
+                </plugin>
+
+                <!-- DEPLOY GITHUB SITE PLUGIN -->
+                <plugin>
+                    <groupId>com.github.github</groupId>
+                    <artifactId>site-maven-plugin</artifactId>
+                    <version>${site-maven-plugin.version}</version>
+                </plugin>
+
+                <!-- BUILD HELPER PLUGIN (used to attach license file as artifacts) -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>${build-helper-maven-plugin.version}</version>
+                </plugin>
+
+                <!-- CREATE DEBIAN (.DEB) PACKAGE PLUGIN -->
+                <plugin>
+                    <groupId>org.vafer</groupId>
+                    <artifactId>jdeb</artifactId>
+                    <version>${jdeb.version}</version>
+                </plugin>
+
+                <!-- AWS S3 UPLOAD PLUGIN -->
+                <plugin>
+                    <groupId>com.bazaarvoice.maven.plugins</groupId>
+                    <artifactId>s3-upload-maven-plugin</artifactId>
+                    <version>${s3-upload-maven-plugin.version}</version>
+                </plugin>
+
+				<!-- Eclipse m2e plugin. It has no influence on the Maven build itself. Only added to enable clean import into Eclipse IDE -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>${lifecycle-mapping.version}</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-antrun-plugin</artifactId>
+										<versionRange>[1.3,)</versionRange>
+										<goals>
+											<goal>run</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-dependency-plugin</artifactId>
+										<versionRange>[2.8,)</versionRange>
+										<goals>
+											<goal>copy</goal>
+											<goal>copy-dependencies</goal>
+											<goal>unpack</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>license-maven-plugin</artifactId>
+										<versionRange>[1.7,)</versionRange>
+										<goals>
+											<goal>
+												update-file-header
+											</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											com.github.dantwining.whitespace-maven-plugin
+										</groupId>
+										<artifactId>
+											whitespace-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.0.4,)
+										</versionRange>
+										<goals>
+											<goal>trim</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+            </plugins>
+        </pluginManagement>
+
+        <!-- GLOBAL BUILD PLUGINS (used when building all modules) -->
+		<plugins>
+
+			<!-- USE LATEST SCM PLUGIN TO SUPPORT GIT -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-scm-plugin</artifactId>
+				<configuration>
+					<goals>install</goals>
+				</configuration>
+			</plugin>
+
+			<!-- GENERATE LICENSE FILE IN PROJECT ROOT -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>${license-maven-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>update-project-license</id>
+						<goals>
+							<goal>update-project-license</goal>
+						</goals>
+						<phase>process-sources</phase>
+						<configuration>
+							<licenseName>lgpl_v3</licenseName>
+						</configuration>
+					</execution>
+					<execution>
+						<id>append-license-file-headers</id>
+                        <goals>
+                            <goal>update-file-header</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+						<configuration>
+							<descriptionTemplate>${basedir}/src/license/template.ftl</descriptionTemplate>
+						</configuration>
+					</execution>
+				</executions>
+				<inherited>false</inherited>
+			</plugin>
+
+            <!-- REMOVE TRAILING WHITESPACE AUTOMATICALLY -->
+            <plugin>
+                <artifactId>whitespace-maven-plugin</artifactId>
+                <groupId>com.github.dantwining.whitespace-maven-plugin</groupId>
+                <version>1.0.4</version>
+                <executions>
+                    <execution>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>trim</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+			<!-- GENERATE SITE DOCUMENTATION -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+                <version>3.4</version>
+				<inherited>false</inherited>
+				<configuration>
+                    <generateProjectInfo>true</generateProjectInfo>
+                    <generateReports>true</generateReports>
+                    <generateSitemap>true</generateSitemap>
+				</configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.velocity</groupId>
+                        <artifactId>velocity</artifactId>
+                        <version>1.5</version>
+                    </dependency>
+                </dependencies>
+			</plugin>
+
+			<!-- ATTACH LICENSE AS ARTIFACT -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-artifacts</id>
+						<phase>package</phase>
+						<goals>
+							<goal>attach-artifact</goal>
+						</goals>
+						<configuration>
+							<artifacts>
+								<artifact>
+									<file>${basedir}/LICENSE.txt</file>
+									<type>txt</type>
+									<classifier>license</classifier>
+								</artifact>
+								<artifact>
+									<file>${basedir}/NOTICE.txt</file>
+									<type>txt</type>
+									<classifier>notice</classifier>
+								</artifact>
+								<artifact>
+									<file>${basedir}/README.md</file>
+									<type>md</type>
+									<classifier>readme</classifier>
+								</artifact>
+							</artifacts>
+						</configuration>
+					</execution>
+				</executions>
+				<inherited>false</inherited>
+			</plugin>
+		</plugins>
+	</build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+                <reportSets>
+                    <reportSet>
+                        <id>non-aggregate</id>
+                        <configuration>
+                            <verbose>false</verbose>
+                            <linksource>true</linksource>
+                            <name>JavaDocs</name>
+                            <description>JavaDoc API documentation</description>
+                            <outputName>javadoc/index</outputName>
+                            <sourcepath>pi4j-core/src/main/java</sourcepath>
+                        </configuration>
+                        <reports>
+                            <report>javadoc</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${maven-project-info-reports-plugin.version}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>summary</report>
+                            <report>project-team</report>
+                            <report>license</report>
+                            <report>scm</report>
+                            <report>issue-tracking</report>
+                            <report>plugins</report>
+                            <report>dependency-info</report>
+                            <report>dependency-management</report>
+                            <report>plugin-management</report>
+                            <report>distribution-management</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
+
+</project>
